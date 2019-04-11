@@ -32,6 +32,20 @@ const userController = {
 
         res.status(400).send({message: "user not found"});
 
+    },
+
+    destroy(req, res){
+        const {id} = req.params;
+
+        const result = users.find(user => id === user.id);
+        const index = users.indexOf(result);
+
+        if(result){
+            users.splice(index, 1);
+            res.status(204).send({message: "User deleted"});
+        }
+
+        res.status(400).send({message: "user not found"});
     }
 }
 
